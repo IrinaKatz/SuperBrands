@@ -1,0 +1,80 @@
+<div class="cont">
+  <div class="bookmarks-container" >
+    <div class="bookmark"
+         [ngClass]="spec === activeSpecialist ? 'chosen' : 'shadowed'"
+         *ngFor="let spec of specInWork" (click)="setCurrentSpec(spec)">
+      <div class="photo-container">
+          <img [src]="getPhoto(spec.id)" width="40px" alt="spec">
+      </div>
+      <div class="shops-amount-icon">{{spec.shops.length}}</div>
+    </div>
+    <div class="add-specialist" ngbDropdown>
+      <button class="icon-adding" id="plus" ngbDropdownToggle>
+        <span class="icon" id="dropdownBasic1" >
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.41667 0.75V5.41667H0.75V6.58333H5.41667V11.25H6.58333V6.58333H11.25V5.41667H6.58333V0.75H5.41667Z" fill="black" fill-opacity="0.32"/>
+          </svg>
+        </span>
+        <span ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button  ngbDropdownItem *ngFor="let spec of freeSpecialists" (click)="setNewSpec(spec)">{{spec.name}}</button>
+        </span>
+      </button>
+    </div>
+    <label for="plus" class="words-adding" *ngIf="!activeSpecialist">Добавить специалиста</label>
+  </div>
+
+  <div *ngIf="!activeSpecialist" class="empty-field">
+    <h5>Специалист не назначен</h5>
+    <p>Чтобы начать работу с нераспределенными магазинами, вам необходимо добавить хотя бы одного специалиста</p>
+    <label for="plus" class="add-spec-icon">
+      <svg width="44" height="41" viewBox="0 0 44 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="19" cy="22" r="18" stroke="black" stroke-opacity="0.1" stroke-width="2"/>
+        <circle cx="19" cy="18" r="6" stroke="black" stroke-opacity="0.1" stroke-width="2"/>
+        <path d="M7 34C8.74674 29.3392 13.4599 26 19 26C24.5401 26 29.2533 29.3392 31 34" stroke="black" stroke-opacity="0.1" stroke-width="2"/>
+        <path id="upperplus" d="M36.25 0.25V6.25H30.25V7.75H36.25V13.75H37.75V7.75H43.75V6.25H37.75V0.25H36.25Z" fill="black" fill-opacity="0.1"/>
+        <path d="M36.25 0.25V6.25H30.25V7.75H36.25V13.75H37.75V7.75H43.75V6.25H37.75V0.25H36.25Z" fill="black" fill-opacity="0.1"/>
+      </svg>
+    </label>
+  </div>
+
+  <div *ngIf="activeSpecialist" class="mf" >
+    <div  class="specialist-field">
+      <div class="header">Специалист</div>
+      <div class="specialist-card">
+        <span class="photo-container">
+          <img [src]="getPhoto(activeSpecialist.id)" width="40px" alt="spec">
+        </span>
+        <span class="spec-name">{{activeSpecialist.name}}</span>
+        <span class="spec-shops-amount">{{activeSpecialist['shops'].length}}</span>
+        <span class="spec-shops-ending" *ngIf="activeSpecialist['shops'].length == 1"> магазин</span>
+        <span class="spec-shops-ending" *ngIf="activeSpecialist['shops'].length > 1 && activeSpecialist.shops.length < 5"> магазина</span>
+        <span class="spec-shops-ending" *ngIf="activeSpecialist['shops'].length > 4 || activeSpecialist.shops.length == 0"> магазинов</span>
+        <span class="spec-delete" (click)="removeSpecialist()">
+          <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.49609 0C3.67578 0 3 0.675781 3 1.49609V2H0V3H1V11.5C1 12.3242 1.67578 13 2.5 13H8.5C9.32422 13 10 12.3242 10 11.5V3H11V2H8V1.49609C8 0.675781 7.32422 0 6.50391 0H4.49609ZM4.49609 1H6.50391C6.78516 1 7 1.21484 7 1.49609V3H9V11.5C9 11.7812 8.78125 12 8.5 12H2.5C2.21875 12 2 11.7812 2 11.5V3H4V1.49609C4 1.21484 4.21484 1 4.49609 1ZM3 4V11H4V4H3ZM5 4V11H6V4H5ZM7 4V11H8V4H7Z" fill="#ADADAD"/>
+          </svg>
+        </span>
+      </div>
+
+    <div class="shops-field">
+      <div class="header">Магазины</div>
+      <div class="no-shops" *ngIf="activeSpecialist.shops.length === 0">
+        <span class="not-assigned">Не назначены </span>
+        <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.8113 10.2995L7.94671 0.544271C7.74359 0.203125 7.38421 0 6.98578 0C6.58734 0 6.22796 0.203125 6.02484 0.544271L0.160257 10.2995C-0.0480768 10.6458 -0.0532854 11.0781 0.144631 11.4297C0.342548 11.7813 0.717548 12 1.12119 12H12.8504C13.254 12 13.629 11.7813 13.8269 11.4297C14.0248 11.0781 14.0196 10.6458 13.8113 10.2995ZM7.65244 10H6.31911V8.66667H7.65244V10ZM7.65244 7.33333H6.31911V4H7.65244V7.33333Z" fill="#FF9500"/>
+        </svg>
+      </div>
+      <div class="shops-cards-container">
+        <div class="shop-card" *ngFor="let shop of activeSpecialist.shops ">
+          <span class="shop-logo">BS
+          </span>
+          <span class="shop-name">{{shop.name}}</span>
+          <span class="shop-address">{{shop.address}}</span>
+          <span class="shop-remove" (click)="removeShop(shop)">-</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+

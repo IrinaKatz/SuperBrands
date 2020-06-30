@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="main-field">
+    <div class="header">
+      <span>Нераспределенные магазины:  {{(shops | async).length}}</span>
+      <span *ngIf="shops.length > 0">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect opacity="0.1" width="24" height="24" rx="12" fill="#FF9500"/>
+          <path d="M18.8113 15.2995L12.9467 5.54427C12.7436 5.20313 12.3842 5 11.9858 5C11.5873 5 11.228 5.20313 11.0248 5.54427L5.16026 15.2995C4.95192 15.6458 4.94671 16.0781 5.14463 16.4297C5.34255 16.7813 5.71755 17 6.12119 17H17.8504C18.254 17 18.629 16.7813 18.8269 16.4297C19.0248 16.0781 19.0196 15.6458 18.8113 15.2995ZM12.6524 15H11.3191V13.6667H12.6524V15ZM12.6524 12.3333H11.3191V9H12.6524V12.3333Z" fill="#FF9500"/>
+        </svg>
+      </span>
+    </div>
+    <div class="shops-cards-container">
+      <div class="shop-card" *ngFor="let shop of (shops | async), let i = index">
+        <span class="arrow" (click)="toAddToSpecialist(i)">
+          <svg width="15" height="7" viewBox="0 0 15 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.26562 0.020752L4.98438 0.708252L2.78906 2.99731H9V3.99731H2.80859L4.98438 6.27075L4.26562 6.95825L0.933594 3.4895L4.26562 0.020752Z" fill="#424242"/>
+<path d="M11.0038 2.99731H10.0049V3.99731H11.0038V2.99731Z" fill="#424242"/>
+<path d="M12.0001 2.99731V3.99731H13.0001V2.99731H12.0001Z" fill="#424242"/>
+<path d="M15.0001 3.99731V2.99731H14.0001V3.99731H15.0001Z" fill="#424242"/>
+</svg>
+        </span>
+        <span class="shop-logo">BS</span>
+        <span class="shop-name">{{shop.name}}</span>
+        <span class="shop-address">{{shop.address}}</span>
+      </div>
+    </div>
+  </div>
+</div>

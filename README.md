@@ -2,26 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
 
-## Development server
+## Test task for Angular Developer Position
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Техническое задание для собеседования на позицию Angular-разработчик
 
-## Code scaffolding
+Цель: показать навыки владения Angular’ом, умение реализовать интерфейс с соблюдением стилизации и основных параметров в соответствии с макетом, 
+умение работы с моковыми данным, а также организацию кода (выделение основных модулей, компонентов, сервисов, классов. 
+Разделение кода на логические блоки. Способность аргументировать выбранное решение/подход).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Задача: взяв основные элементы и их параметрику из макета на интерфейсе реализовать форму  для создания связей многие ко многим между 
+специалистами и магазинами в некоторой компании с использованием фреймворка Angular не ниже 8-ой версии.
